@@ -19,6 +19,9 @@ import { Route as ApiWritePostRouteImport } from './routes/api/write-post'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppEditRouteImport } from './routes/app/edit'
 import { Route as AppGenerateRouteImport } from './routes/app/generate'
+import { Route as AppLibraryRouteImport } from './routes/app/library'
+import { Route as AppSnippetsRouteImport } from './routes/app/snippets'
+import { Route as AppWriteRouteImport } from './routes/app/write'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -70,6 +73,21 @@ const AppGenerateRoute = AppGenerateRouteImport.update({
   path: '/generate',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppLibraryRoute = AppLibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSnippetsRoute = AppSnippetsRouteImport.update({
+  id: '/snippets',
+  path: '/snippets',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppWriteRoute = AppWriteRouteImport.update({
+  id: '/write',
+  path: '/write',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -81,6 +99,9 @@ export interface FileRoutesByFullPath {
   '/api/write-post': typeof ApiWritePostRoute
   '/app/edit': typeof AppEditRoute
   '/app/generate': typeof AppGenerateRoute
+  '/app/library': typeof AppLibraryRoute
+  '/app/snippets': typeof AppSnippetsRoute
+  '/app/write': typeof AppWriteRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -92,6 +113,9 @@ export interface FileRoutesByTo {
   '/api/write-post': typeof ApiWritePostRoute
   '/app/edit': typeof AppEditRoute
   '/app/generate': typeof AppGenerateRoute
+  '/app/library': typeof AppLibraryRoute
+  '/app/snippets': typeof AppSnippetsRoute
+  '/app/write': typeof AppWriteRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -105,6 +129,9 @@ export interface FileRoutesById {
   '/api/write-post': typeof ApiWritePostRoute
   '/app/edit': typeof AppEditRoute
   '/app/generate': typeof AppGenerateRoute
+  '/app/library': typeof AppLibraryRoute
+  '/app/snippets': typeof AppSnippetsRoute
+  '/app/write': typeof AppWriteRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -119,6 +146,9 @@ export interface FileRouteTypes {
     | '/api/write-post'
     | '/app/edit'
     | '/app/generate'
+    | '/app/library'
+    | '/app/snippets'
+    | '/app/write'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -130,6 +160,9 @@ export interface FileRouteTypes {
     | '/api/write-post'
     | '/app/edit'
     | '/app/generate'
+    | '/app/library'
+    | '/app/snippets'
+    | '/app/write'
     | '/app'
   id:
     | '__root__'
@@ -142,6 +175,9 @@ export interface FileRouteTypes {
     | '/api/write-post'
     | '/app/edit'
     | '/app/generate'
+    | '/app/library'
+    | '/app/snippets'
+    | '/app/write'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -227,18 +263,45 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGenerateRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/app/library': {
+      id: '/app/library'
+      path: '/library'
+      fullPath: '/app/library'
+      preLoaderRoute: typeof AppLibraryRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/snippets': {
+      id: '/app/snippets'
+      path: '/snippets'
+      fullPath: '/app/snippets'
+      preLoaderRoute: typeof AppSnippetsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/write': {
+      id: '/app/write'
+      path: '/write'
+      fullPath: '/app/write'
+      preLoaderRoute: typeof AppWriteRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppEditRoute: typeof AppEditRoute
   AppGenerateRoute: typeof AppGenerateRoute
+  AppLibraryRoute: typeof AppLibraryRoute
+  AppSnippetsRoute: typeof AppSnippetsRoute
+  AppWriteRoute: typeof AppWriteRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppEditRoute: AppEditRoute,
   AppGenerateRoute: AppGenerateRoute,
+  AppLibraryRoute: AppLibraryRoute,
+  AppSnippetsRoute: AppSnippetsRoute,
+  AppWriteRoute: AppWriteRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
