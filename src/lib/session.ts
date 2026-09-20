@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Session } from "@supabase/supabase-js";
 
 import { supabase } from "@/integrations/supabase/client";
+
+type Session = NonNullable<Awaited<ReturnType<typeof supabase.auth.getSession>>["data"]["session"]>;
 
 export function useSession() {
   const [session, setSession] = useState<Session | null>(null);
