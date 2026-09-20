@@ -10,33 +10,149 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteRouteImport } from './routes/app/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ApiEditImageRouteImport } from './routes/api/edit-image'
+import { Route as ApiGenerateImageRouteImport } from './routes/api/generate-image'
+import { Route as ApiSnippetsRouteImport } from './routes/api/snippets'
+import { Route as ApiWritePostRouteImport } from './routes/api/write-post'
+import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppEditRouteImport } from './routes/app/edit'
+import { Route as AppGenerateRouteImport } from './routes/app/generate'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiEditImageRoute = ApiEditImageRouteImport.update({
+  id: '/api/edit-image',
+  path: '/api/edit-image',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiGenerateImageRoute = ApiGenerateImageRouteImport.update({
+  id: '/api/generate-image',
+  path: '/api/generate-image',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSnippetsRoute = ApiSnippetsRouteImport.update({
+  id: '/api/snippets',
+  path: '/api/snippets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWritePostRoute = ApiWritePostRouteImport.update({
+  id: '/api/write-post',
+  path: '/api/write-post',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppEditRoute = AppEditRouteImport.update({
+  id: '/edit',
+  path: '/edit',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppGenerateRoute = AppGenerateRouteImport.update({
+  id: '/generate',
+  path: '/generate',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/api/edit-image': typeof ApiEditImageRoute
+  '/api/generate-image': typeof ApiGenerateImageRoute
+  '/api/snippets': typeof ApiSnippetsRoute
+  '/api/write-post': typeof ApiWritePostRoute
+  '/app/edit': typeof AppEditRoute
+  '/app/generate': typeof AppGenerateRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/api/edit-image': typeof ApiEditImageRoute
+  '/api/generate-image': typeof ApiGenerateImageRoute
+  '/api/snippets': typeof ApiSnippetsRoute
+  '/api/write-post': typeof ApiWritePostRoute
+  '/app/edit': typeof AppEditRoute
+  '/app/generate': typeof AppGenerateRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/api/edit-image': typeof ApiEditImageRoute
+  '/api/generate-image': typeof ApiGenerateImageRoute
+  '/api/snippets': typeof ApiSnippetsRoute
+  '/api/write-post': typeof ApiWritePostRoute
+  '/app/edit': typeof AppEditRoute
+  '/app/generate': typeof AppGenerateRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/api/edit-image'
+    | '/api/generate-image'
+    | '/api/snippets'
+    | '/api/write-post'
+    | '/app/edit'
+    | '/app/generate'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/api/edit-image'
+    | '/api/generate-image'
+    | '/api/snippets'
+    | '/api/write-post'
+    | '/app/edit'
+    | '/app/generate'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/api/edit-image'
+    | '/api/generate-image'
+    | '/api/snippets'
+    | '/api/write-post'
+    | '/app/edit'
+    | '/app/generate'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ApiEditImageRoute: typeof ApiEditImageRoute
+  ApiGenerateImageRoute: typeof ApiGenerateImageRoute
+  ApiSnippetsRoute: typeof ApiSnippetsRoute
+  ApiWritePostRoute: typeof ApiWritePostRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +164,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/edit-image': {
+      id: '/api/edit-image'
+      path: '/api/edit-image'
+      fullPath: '/api/edit-image'
+      preLoaderRoute: typeof ApiEditImageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/generate-image': {
+      id: '/api/generate-image'
+      path: '/api/generate-image'
+      fullPath: '/api/generate-image'
+      preLoaderRoute: typeof ApiGenerateImageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/snippets': {
+      id: '/api/snippets'
+      path: '/api/snippets'
+      fullPath: '/api/snippets'
+      preLoaderRoute: typeof ApiSnippetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/write-post': {
+      id: '/api/write-post'
+      path: '/api/write-post'
+      fullPath: '/api/write-post'
+      preLoaderRoute: typeof ApiWritePostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/edit': {
+      id: '/app/edit'
+      path: '/edit'
+      fullPath: '/app/edit'
+      preLoaderRoute: typeof AppEditRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/app/generate': {
+      id: '/app/generate'
+      path: '/generate'
+      fullPath: '/app/generate'
+      preLoaderRoute: typeof AppGenerateRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
+interface AppRouteRouteChildren {
+  AppEditRoute: typeof AppEditRoute
+  AppGenerateRoute: typeof AppGenerateRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppEditRoute: AppEditRoute,
+  AppGenerateRoute: AppGenerateRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ApiEditImageRoute: ApiEditImageRoute,
+  ApiGenerateImageRoute: ApiGenerateImageRoute,
+  ApiSnippetsRoute: ApiSnippetsRoute,
+  ApiWritePostRoute: ApiWritePostRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
